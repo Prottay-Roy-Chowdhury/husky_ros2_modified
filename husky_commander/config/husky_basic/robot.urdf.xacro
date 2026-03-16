@@ -35,6 +35,21 @@
 
   <!-- Sensors -->
 
+  <xacro:include filename="$(find clearpath_platform_description)/urdf/a200/attachments/rplidar.urdf.xacro"/>
+
+  <xacro:rplidar
+      name="front_rplidar"
+      parent_link="front_bumper_link"
+      xyz="0.0 0.0 0.08"
+      rpy="0 0 0"
+      laser_rpy="0 0 ${-M_PI/2}"/>
+
+  <xacro:rplidar
+      name="rear_rplidar"
+      parent_link="rear_bumper_link"
+      xyz="0.0 0.0 0.08"
+      rpy="0 0 ${M_PI}"
+      laser_rpy="0 0 ${-M_PI/2}"/>
 
   <!-- Manipulators -->
 
