@@ -16,3 +16,19 @@ platform:
       parent: rear_bumper_mount
     - name: top_plate
       type: a200.top_plate
+
+sensors:
+  lidar2d:
+    - model: rplidar
+      urdf_enabled: true
+      launch_enabled: true
+      parent: front_bumper_link
+      xyz: [0.0, 0.0, 0.08]
+      rpy: [0.0, 0.0, 0.0]
+
+    - model: rplidar
+      urdf_enabled: true
+      launch_enabled: true
+      parent: rear_bumper_link
+      xyz: [0.0, 0.0, 0.08]
+      rpy: [0.0, 0.0, 3.141592653589793]

@@ -58,6 +58,7 @@ from clearpath_config.sensors.types.lidars_2d import (
     BaseLidar2D,
     HokuyoUST,
     SickLMS1XX,
+    RPLidar,
 )
 from clearpath_config.sensors.types.lidars_3d import (
     BaseLidar3D,
@@ -154,10 +155,12 @@ class GlobalPositioningSystem():
 class Lidar2D():
     HOKUYO_UST = HokuyoUST.SENSOR_MODEL
     SICK_LMS1XX = SickLMS1XX.SENSOR_MODEL
+    RPLIDAR = RPLidar.SENSOR_MODEL
 
     MODEL = {
         HOKUYO_UST: HokuyoUST,
-        SICK_LMS1XX: SickLMS1XX
+        SICK_LMS1XX: SickLMS1XX,
+        RPLIDAR: RPLidar,
     }
 
     @classmethod
@@ -545,6 +548,41 @@ class SensorConfig(BaseConfig):
             "Lidar2D object must be of type LMS1XX"
         )
         self._lidar2d.add(lms1xx)
+    
+    # Lidar2D: Add RPLidar
+    def add_rplidar(
+            self,
+            # By Object
+            rplidar: RPLidar = None,
+            # By Parameters
+            frame_id: str = RPLidar.FRAME_ID,
+            ip: str = RPLidar.IP_ADDRESS,
+            port: int = RPLidar.IP_PORT,
+            min_angle: float = RPLidar.MIN_ANGLE,
+            max_angle: float = RPLidar.MAX_ANGLE,
+            urdf_enabled: bool = RPLidar.URDF_ENABLED,
+            launch_enabled: bool = RPLidar.LAUNCH_ENABLED,
+            parent: str = Accessory.PARENT,
+            xyz: List[float] = Accessory.XYZ,
+            rpy: List[float] = Accessory.RPY
+            ) -> None:
+        if rplidar is None:
+            rplidar = RPLidar(
+                frame_id=frame_id,
+                ip=ip,
+                port=port,
+                min_angle=min_angle,
+                max_angle=max_angle,
+                urdf_enabled=urdf_enabled,
+                launch_enabled=launch_enabled,
+                parent=parent,
+                xyz=xyz,
+                rpy=rpy
+            )
+        assert isinstance(rplidar, RPLidar), (
+            "Lidar2D object must be of type RPLidar"
+        )
+        self._lidar2d.add(rplidar)
 
     # Lidar2D: Remove Lidar2D by passing object or index
     def remove_lidar_2d(self, lidar_2d: BaseLidar2D | int) -> None:
@@ -574,6 +612,10 @@ class SensorConfig(BaseConfig):
     # Lidar2D: Get All Objects of Model LMS1XX
     def get_all_lms1xx(self) -> List[SickLMS1XX]:
         return self.get_all_lidar_2d_by_model(Lidar2D.LMS1XX)
+    
+    # Lidar2D: Get All Objects of Model RPLidar
+    def get_all_rplidar(self) -> List[RPLidar]:
+        return self.get_all_lidar_2d_by_model(Lidar2D.RPLIDAR)
 
     # Lidar2D: Set Lidar2D Object
     def set_lidar_2d(self, lidar_2d: BaseLidar2D) -> None:

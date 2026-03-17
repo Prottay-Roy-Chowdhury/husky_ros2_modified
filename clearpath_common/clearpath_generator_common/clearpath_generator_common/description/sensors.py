@@ -44,7 +44,7 @@ from clearpath_config.sensors.types.imu import (
     Microstrain,
     RedshiftUM7
 )
-from clearpath_config.sensors.types.lidars_2d import BaseLidar2D, HokuyoUST, SickLMS1XX
+from clearpath_config.sensors.types.lidars_2d import BaseLidar2D, HokuyoUST, SickLMS1XX, RPLidar
 from clearpath_config.sensors.types.lidars_3d import BaseLidar3D, VelodyneLidar
 from clearpath_config.sensors.types.sensor import BaseSensor
 
@@ -185,6 +185,7 @@ class SensorDescription():
     MODEL = {
         HokuyoUST.SENSOR_MODEL: Lidar2dDescription,
         SickLMS1XX.SENSOR_MODEL: Lidar2dDescription,
+        RPLidar.SENSOR_MODEL: Lidar2dDescription,
         IntelRealsense.SENSOR_MODEL: IntelRealsenseDescription,
         FlirBlackfly.SENSOR_MODEL: CameraDescription,
         AxisCamera.SENSOR_MODEL: AxisCameraDescription,

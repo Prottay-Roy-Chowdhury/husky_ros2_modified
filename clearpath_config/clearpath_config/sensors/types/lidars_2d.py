@@ -338,3 +338,63 @@ class SickLMS1XX(BaseLidar2D):
             xyz,
             rpy
         )
+
+class RPLidar(BaseLidar2D):
+    SENSOR_MODEL = "rplidar"
+
+    FRAME_ID = "laser"
+    IP_PORT = 0
+    MIN_ANGLE = -pi
+    MAX_ANGLE = pi
+
+    class ROS_PARAMETER_KEYS:
+        FRAME_ID = "rplidar_node.frame_id"
+        IP_ADDRESS = "rplidar_node.ip_address"
+        IP_PORT = "rplidar_node.ip_port"
+        MIN_ANGLE = "rplidar_node.angle_min"
+        MAX_ANGLE = "rplidar_node.angle_max"
+
+    class TOPICS:
+        SCAN = "scan"
+        NAME = {
+            SCAN: "scan",
+        }
+        RATE = {
+            SCAN: 10,
+        }
+
+    def __init__(
+            self,
+            idx: int = None,
+            name: str = None,
+            topic: str = BaseLidar2D.TOPIC,
+            frame_id: str = FRAME_ID,
+            ip: str = BaseLidar2D.IP_ADDRESS,
+            port: int = IP_PORT,
+            min_angle: float = MIN_ANGLE,
+            max_angle: float = MAX_ANGLE,
+            urdf_enabled: bool = BaseSensor.URDF_ENABLED,
+            launch_enabled: bool = BaseSensor.LAUNCH_ENABLED,
+            ros_parameters: dict = BaseSensor.ROS_PARAMETERS,
+            parent: str = Accessory.PARENT,
+            xyz: List[float] = Accessory.XYZ,
+            rpy: List[float] = Accessory.RPY
+            ) -> None:
+        ros_parameters_template = BaseSensor.ROS_PARAMETERS_TEMPLATE
+        super().__init__(
+            idx,
+            name,
+            topic,
+            frame_id,
+            ip,
+            port,
+            min_angle,
+            max_angle,
+            urdf_enabled,
+            launch_enabled,
+            ros_parameters,
+            ros_parameters_template,
+            parent,
+            xyz,
+            rpy
+        )
