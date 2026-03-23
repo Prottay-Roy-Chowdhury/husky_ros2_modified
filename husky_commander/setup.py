@@ -37,6 +37,8 @@ setup(
         ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
         ("share/" + package_name, ["package.xml"]),
         (os.path.join("share", package_name, "launch"), glob("launch/*.launch.py")),
+        # For map_param, we want to include all YAML files in the map_param directory
+        (os.path.join("share", package_name, "map_param"), glob("map_param/*.yaml")),
     ],
     install_requires=["setuptools"],
     zip_safe=True,

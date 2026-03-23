@@ -52,7 +52,7 @@ def generate_launch_description():
         name="slam_toolbox",
         output="screen",
         parameters=[
-            "/opt/ros/humble/share/slam_toolbox/config/mapper_params_online_async.yaml",
+            "/dev_ws/install/share/husky_commander/map_param/mapper_params_online_async.yaml",
             {
                 "use_sim_time": True,
                 "scan_topic": "/merged",

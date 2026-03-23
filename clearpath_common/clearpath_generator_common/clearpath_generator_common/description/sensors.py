@@ -96,12 +96,12 @@ class SensorDescription():
             super().__init__(sensor)
 
             self.parameters.update({
-                self.ANGULAR_RESOLUTION: 0.5,
+                self.ANGULAR_RESOLUTION: 1.0,
                 self.MINIMUM_ANGLE: sensor.min_angle,
                 self.MAXIMUM_ANGLE: sensor.max_angle,
-                self.MINIMUM_RANGE: 0.05,
-                self.MAXIMUM_RANGE: 25.0,
-                self.UPDATE_RATE: 50
+                self.MINIMUM_RANGE: 0.12,
+                self.MAXIMUM_RANGE: 12.0,
+                self.UPDATE_RATE: 10
             })
 
     class Lidar3dDescription(BaseDescription):
