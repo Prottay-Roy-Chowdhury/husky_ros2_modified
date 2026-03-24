@@ -27,6 +27,17 @@ def generate_launch_description():
     #     ],
     # )
 
+    imu_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        name="imu_bridge",
+        output="screen",
+        arguments=[
+            "/a200_0000/sensors/imu_0/data@sensor_msgs/msg/Imu[gz.msgs.IMU"
+        ],
+        parameters=[{"use_sim_time": True}],
+    )
+
     slam_toolbox = Node(
         package="slam_toolbox",
         executable="async_slam_toolbox_node",
@@ -47,5 +58,6 @@ def generate_launch_description():
     return LaunchDescription([
         front_bridge,
         # static_lidar_tf,
+        imu_bridge,
         slam_toolbox,
     ])

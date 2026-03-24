@@ -13,6 +13,7 @@ def generate_launch_description():
     # Declare launch files
     launch_file_lidar2d_0 = '/dev_ws/src/husky_commander/config/husky_basic/sensors/launch/lidar2d_0.launch.py'
     launch_file_lidar2d_1 = '/dev_ws/src/husky_commander/config/husky_basic/sensors/launch/lidar2d_1.launch.py'
+    launch_file_imu_0 = '/dev_ws/src/husky_commander/config/husky_basic/sensors/launch/imu_0.launch.py'
 
     # Include launch files
     launch_lidar2d_0 = IncludeLaunchDescription(
@@ -23,8 +24,13 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([launch_file_lidar2d_1]),
     )
 
+    launch_imu_0 = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([launch_file_imu_0]),
+    )
+
     # Create LaunchDescription
     ld = LaunchDescription()
     ld.add_action(launch_lidar2d_0)
     ld.add_action(launch_lidar2d_1)
+    ld.add_action(launch_imu_0)
     return ld

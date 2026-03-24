@@ -32,3 +32,10 @@ sensors:
       parent: rear_bumper_link
       xyz: [0.0, 0.0, 0.08]
       rpy: [0.0, 0.0, 3.141592653589793]
+  imu:
+    - model: microstrain_imu
+      urdf_enabled: true
+      launch_enabled: true
+      parent: base_link
+      xyz: [0.0, 0.0, 0.05]
+      rpy: [0.0, 0.0, 0.0]
