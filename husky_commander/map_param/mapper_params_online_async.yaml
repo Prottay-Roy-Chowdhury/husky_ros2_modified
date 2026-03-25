@@ -13,7 +13,7 @@ slam_toolbox:
     # ROS Parameters
     odom_frame: odom
     map_frame: map
-    base_frame: base_link
+    base_frame: base_footprint
     scan_topic: /scan
     use_map_saver: true
     mode: mapping #localization
@@ -47,6 +47,9 @@ slam_toolbox:
     scan_buffer_maximum_scan_distance: 10.0
     link_match_minimum_response_fine: 0.1  
     link_scan_maximum_distance: 6.0
+    link_scan_minimum_cos_angle: 0.5
+    link_scan_minimum_response: 0.1
+    link_scan_minimum_response_fine: 0.2
     loop_search_maximum_distance: 20.0
     do_loop_closing: true 
     loop_match_minimum_chain_size: 10           
